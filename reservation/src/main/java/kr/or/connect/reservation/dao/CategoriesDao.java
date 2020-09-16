@@ -21,6 +21,9 @@ public class CategoriesDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
 	private RowMapper<Category> rowMapper = BeanPropertyRowMapper.newInstance(Category.class);
+	
+	public static final String SELECT_ALL = " select id, name from category ";
+
 
 	public CategoriesDao(DataSource dataSource) {
 		
@@ -31,8 +34,8 @@ public class CategoriesDao {
 	
 	public List<Category> selectAll(){
 		
-		
 		String SELECT_ALL  = " select id, name from category ";
+		
 		return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
 	}
 	

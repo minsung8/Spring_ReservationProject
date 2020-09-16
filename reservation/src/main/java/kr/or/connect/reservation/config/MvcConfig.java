@@ -22,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {"kr.or.connect.reservation.service"})
 public class MvcConfig implements WebMvcConfigurer{
 	
+	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
