@@ -6,24 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.or.connect.reservation.dao.CategoriesDao;
+import kr.or.connect.reservation.dao.CategoryDao;
 import kr.or.connect.reservation.dto.Category;
-import kr.or.connect.reservation.service.CategoryService;
- 
+import kr.or.connect.reservation.service.ReservationService;
+
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class ReservationServiceImpl implements ReservationService{
 
 	@Autowired
-	CategoriesDao cdao;
+	CategoryDao categoryDao;
 	
 	@Override
 	@Transactional
 	public List<Category> getCategories() {
-		List<Category> list = cdao.selectAll();
-		
+		List<Category> list = categoryDao.selectAll();
 		return list;
 	}
-	
 
 }
- 

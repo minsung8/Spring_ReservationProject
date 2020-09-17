@@ -1,9 +1,6 @@
 package kr.or.connect.reservation.dao;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -16,28 +13,25 @@ import org.springframework.stereotype.Repository;
 import kr.or.connect.reservation.dto.Category;
 
 @Repository
-public class CategoriesDao {
+public class CategoryDao {
 	
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
 	private RowMapper<Category> rowMapper = BeanPropertyRowMapper.newInstance(Category.class);
 	
-	public static final String SELECT_ALL = " select id, name from category ";
-
-
-	public CategoriesDao(DataSource dataSource) {
+	public CategoryDao(DataSource dataSource) {
 		
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		this.insertAction = new SimpleJdbcInsert(dataSource)
-				.withTableName("category");	
+				.withTableName("category")
+				.usingGeneratedKeyColumns("id");		
 	}
 	
-	public List<Category> selectAll(){
+	public List<Category> selectAll() {
 		
-		String SELECT_ALL  = " select id, name from category ";
+		String sql = "select id, name from category";
 		
-		return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
+		return jdbc.query(sql, rowMapper);
 	}
-	
-	
+
 }

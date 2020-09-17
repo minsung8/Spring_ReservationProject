@@ -2,8 +2,8 @@ package kr.or.connect.reservation.dto;
 
 public class Category {
 	
-	private int id;
-	private String name;
+	int id;
+	String name;
 	
 	public int getId() {
 		return id;
@@ -17,5 +17,5 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 }
