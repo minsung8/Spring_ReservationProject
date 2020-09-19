@@ -9,6 +9,11 @@
 <title>test</title>
 </head>
 <body>
+	<c:forEach items="${list}" var="category">
 
+${category.id }<br>
+${category.name }<br>
+
+	</c:forEach>
 </body>
 </html>
