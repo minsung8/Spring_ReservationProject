@@ -7,6 +7,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.ReservationService;
 
 public class ServiceTest {
@@ -15,10 +17,10 @@ public class ServiceTest {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		ReservationService reservationService = ac.getBean(ReservationService.class);
 		
-		List<Category> list = reservationService.getCategories();
+		List<Product> list = reservationService.getProduct(1);
 		
-		for (Category c : list) {
-			System.out.println(c.getName());
+		for (Product c : list) {
+			System.out.println(c.toString());
 		}
 	}
 

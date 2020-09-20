@@ -10,33 +10,33 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.Promotion;
 
 @Repository
-public class CategoryDao {
+public class PromotionDao {
 	
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
-	private RowMapper<Category> rowMapper = BeanPropertyRowMapper.newInstance(Category.class);
+	private RowMapper<Promotion> rowMapper = BeanPropertyRowMapper.newInstance(Promotion.class);
 	
-	public CategoryDao(DataSource dataSource) {
+	public PromotionDao(DataSource dataSource) {
 		
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		this.insertAction = new SimpleJdbcInsert(dataSource)
-				.withTableName("category")
+				.withTableName("Promotion")
 				.usingGeneratedKeyColumns("id");
-				
 	}
 	
-	public List<Category> selectAll() {
+	public List<Promotion> selectPromotions() {
 		
-		String sql = "select C.id, C.name, count(*) as cnt\r\n" + 
-				"from display_info D\r\n" + 
-				"join product P on D.product_id = P.id\r\n" + 
-				"join category C on P.category_id = C.id\r\n" + 
-				"group by C.id\r\n";
-		
+		String sql = "select distinct(P.id), p.product_id, P2.category_id, C.name as category_name, P2.description, P3.file_id\r\n" + 
+				"from promotion P\r\n" + 
+				"left join product P2 on P.product_id = P2.id\r\n" + 
+				"left join category C on P2.category_id = C.id\r\n" + 
+				"left join product_image P3 on P2.id = P3.product_id\r\n" + 
+				"where P3.type = 'ma'\r\n" + 
+				"group by P.id";
 		
 		return jdbc.query(sql, rowMapper);
 	}

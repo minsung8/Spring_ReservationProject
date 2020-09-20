@@ -7,19 +7,20 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.Promotion;
 
 public class Test {
 	
 	public static void main(String[] args) {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		
-		CategoryDao cdao = ac.getBean(CategoryDao.class);
+		ProductDao pdao = ac.getBean(ProductDao.class);
 		
-		List<Category> list = cdao.selectAll();
+		List<Product> list = pdao.selectProduct(1);
 		
-		for (Category c : list) {
-			System.out.println(c.getName());
+		for (Product c : list) {
+			System.out.println(c.toString());
 		}
 	}
-
 }

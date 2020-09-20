@@ -4,6 +4,7 @@ public class Category {
 	
 	int id;
 	String name;
+	int cnt;
 	
 	public int getId() {
 		return id;
@@ -16,6 +17,12 @@ public class Category {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 }
