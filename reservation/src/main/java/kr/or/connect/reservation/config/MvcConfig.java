@@ -24,13 +24,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
-@ComponentScan(basePackages = {"org.edwith.webbe.calculator.controller.api"})
+@ComponentScan(basePackages = {"kr.or.connect.reservation.controller"})
 public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
+	
+	
 
 /*
     	Swagger 사용 시에는 Docket Bean 을 품고있는 설정 클래스 1개가 기본으로 필요하다.
@@ -59,6 +61,8 @@ public class MvcConfig implements WebMvcConfigurer {
 				new ApiInfo("Swagger Sample", "APIs Sample", "Sample Doc 0.1v", "", contact, "This sentence will be display.", "/");
 		return apiInfo;
 	}
+	
+
 	                
 }
 
