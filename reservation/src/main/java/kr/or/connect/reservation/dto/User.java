@@ -4,19 +4,36 @@ import java.util.Date;
 
 public class User {
 	
-	int id;
-	String name;
-	String password;
-	String email;
-	String phone;
-	Date create_date;
-	Date modify_date;
-	public int getId() {
+	private Long id;
+	private String name;
+	private String password;
+	private String email;
+	private String phone;
+	private Date create_date;
+	private Date modify_date;
+	
+	public User() {
+		create_date = new Date();
+		modify_date = new Date();
+	}
+	
+	public User(Long id, String name, String password, String email) {
+		this();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+	}
+	
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}

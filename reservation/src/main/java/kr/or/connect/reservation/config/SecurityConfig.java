@@ -36,24 +36,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/main", "/members/loginerror", "/members/loginform").permitAll()
-                .antMatchers("/securepage", "members/**").hasRole("USER")
-                .anyRequest().authenticated()
-        		.and()
-        			.formLogin()
-        			.loginPage("/members/loginform")
-        			.usernameParameter("userId")
-        			.passwordParameter("password")
-        			.loginProcessingUrl("/authenticate")
-        			.failureForwardUrl("/members/loginerror?login_error=1")
-        			.defaultSuccessUrl("/", true)
-        			.permitAll()
-        		.and()
-        			.logout()
-        			.logoutUrl("/logout")
-        			.logoutUrl("/");
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/", "/main", "/members/loginform", "/members/loginerror").permitAll()
+            .antMatchers("/securepage", "members/**").hasRole("USER")
+            .anyRequest().authenticated()
+    		.and()
+    			.formLogin()
+    			.loginPage("/members/loginform")
+    			.usernameParameter("userId")
+    			.passwordParameter("password")
+    			.loginProcessingUrl("/authenticate")
+    			.failureForwardUrl("/members/loginerror?login_error=1")
+    			.defaultSuccessUrl("/", true)
+    			.permitAll()
+    		.and()
+    			.logout()
+    			.logoutUrl("/logout")
+    			.logoutUrl("/");
         			
     }
 
