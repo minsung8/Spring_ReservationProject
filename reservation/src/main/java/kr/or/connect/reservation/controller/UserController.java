@@ -11,6 +11,7 @@ import kr.or.connect.reservation.service.UserService;
 @RequestMapping(path = "/members")
 public class UserController {
 	
+	@SuppressWarnings("unused")
 	private final UserService userService;
 	
 	public UserController(UserService userService) {
@@ -19,12 +20,12 @@ public class UserController {
 	
 	@GetMapping("/loginform")
 	public String loginform() {
-		return "members/loginform";
+		return "/members/loginform";
 	}
 	
 	@RequestMapping("/loginerror")
 	public String loginerror(@RequestParam("login_error") String loginError) {
-		return "members/loginerror";
+		return "/members/loginerror";
 	}
 
 }

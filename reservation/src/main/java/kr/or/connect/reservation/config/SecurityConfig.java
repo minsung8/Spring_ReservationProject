@@ -32,29 +32,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         auth.userDetailsService(customUserDetailsService);
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/", "/main", "/members/loginform", "/members/loginerror").permitAll()
-            .antMatchers("/securepage", "members/**").hasRole("USER")
-            .anyRequest().authenticated()
-    		.and()
-    			.formLogin()
-    			.loginPage("/members/loginform")
-    			.usernameParameter("userId")
-    			.passwordParameter("password")
-    			.loginProcessingUrl("/authenticate")
-    			.failureForwardUrl("/members/loginerror?login_error=1")
-    			.defaultSuccessUrl("/", true)
-    			.permitAll()
-    		.and()
-    			.logout()
-    			.logoutUrl("/logout")
-    			.logoutUrl("/");
-        			
+	        .csrf().disable()
+	        .authorizeRequests()
+	        .antMatchers("/", "/main", "/memembers/loginerror", "/members/joinform", "/members/join", "/members/welcome").permitAll()
+	        .antMatchers("/securepage", "/members/**").hasRole("USER")
+	        .anyRequest().authenticated()
+	        .and()
+	            .formLogin()
+	            .loginPage("/members/loginform")
+	            .usernameParameter("userId")
+	            .passwordParameter("password")
+	            .loginProcessingUrl("/authenticate")
+	            .failureForwardUrl("/members/loginerror?login_error=1")
+	            .defaultSuccessUrl("/",true)
+	            .permitAll()
+	        .and()
+	            .logout()
+	            .logoutUrl("/logout")
+	            .logoutSuccessUrl("/");
     }
 
     // 패스워드 인코더를 빈으로 등록합니다. 암호를 인코딩하거나, 

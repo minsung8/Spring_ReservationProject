@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public UserEntity getUser(String loginUserId) {
 		User user = userDao.getUserByEmail(loginUserId);
+		System.out.println(loginUserId);
 		return new UserEntity(user.getEmail(), user.getPassword());
 	}
 
